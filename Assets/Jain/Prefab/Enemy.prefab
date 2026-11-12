@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2839807294530516674}
   - component: {fileID: 227590038750108001}
+  - component: {fileID: 6864467657408800119}
   - component: {fileID: 6428288783461681301}
   - component: {fileID: 5497815381825287183}
   m_Layer: 0
@@ -48,6 +49,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   speed: 2
+--- !u!114 &6864467657408800119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319142712724714990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da447e024fea2d48992bd3a7dacb30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Jain::Jain.EnemyAbility
+  position: 1
+  bullet: {fileID: 6905265889009211904, guid: 3483dd3e377e0fb438c064730c410c3d, type: 3}
 --- !u!136 &6428288783461681301
 CapsuleCollider:
   m_ObjectHideFlags: 0
