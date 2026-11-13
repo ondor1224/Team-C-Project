@@ -4,6 +4,9 @@ namespace Jain
 {
     public class Enemy : MonoBehaviour
     {
+        //적의 기본 데미지
+        public float damage;
+
         //적의 이동속도를 조절함
         public float speed;
 
