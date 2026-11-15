@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -5,23 +6,46 @@ namespace Jain
 {
     public class EnemyAbility : MonoBehaviour
     {
+        //몹이 가지는 포지션
         public int position;
 
+        //대쉬를 했을때 날라가는 정도
+        public float dashSpeed;
+
+        //대쉬를 한 상태인지 체크
+        bool isDashing = false;
+
+        //공격 딜레이
         float attackDelta;
 
+        Vector3 startingPoint;
+
         public GameObject bullet;
+        Rigidbody rb;
+        Enemy enemy;
 
         void Start()
         {
             position = Random.Range(1, 4);
+            rb = GetComponent<Rigidbody>();
+            enemy = GetComponent<Enemy>();
         }
 
         void Update()
         {
             DeltaMin();
-            Onedeal();
-            MeleeAttack();
-            CrazedWarrior();
+            if (enemy.radiusCheck)
+            {
+                Onedeal();
+                MeleeAttack();
+                if (position == 3)
+                {
+                    if (!isDashing)
+                    {
+                        StartCoroutine(Dash());
+                    }
+                }
+            }
         }
 
         void DeltaMin()
@@ -59,16 +83,17 @@ namespace Jain
         }
 
         //돌격형
-        void CrazedWarrior()
+        private IEnumerator Dash()
         {
-            if (position == 3)
-            {
-                if (attackDelta <= 0f)
-                {
-                    //
-                    attackDelta = 0.5f;
-                }
-            }
+            isDashing = true;
+            startingPoint = transform.position;
+            rb.linearVelocity = Vector3.right * dashSpeed;
+            yield return new WaitForSeconds(0.6f);
+            rb.linearVelocity = Vector3.zero;
+            startingPoint.x += -1f;
+            transform.position = startingPoint;
+            enemy.radiusCheck = false;
+            isDashing = false;
         }
     }
 }

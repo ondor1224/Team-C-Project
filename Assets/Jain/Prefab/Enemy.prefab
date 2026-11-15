@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5497815381825287183}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   damage: 1
   speed: 2
+  radiusCheck: 0
 --- !u!114 &6864467657408800119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Jain::Jain.EnemyAbility
   position: 1
+  dashSpeed: 3
   bullet: {fileID: 6905265889009211904, guid: 3483dd3e377e0fb438c064730c410c3d, type: 3}
 --- !u!136 &6428288783461681301
 CapsuleCollider:
@@ -141,7 +143,7 @@ Transform:
   m_GameObject: {fileID: 9036845064942187949}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.07}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
