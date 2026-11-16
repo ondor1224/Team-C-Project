@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -28,22 +29,30 @@ namespace Jain
                 Destroy(other.gameObject);
                 hp -= enemy.damage;
 
-                if (hp < 1f)
-                {
-                    Destroy(gameObject);
-                    Debug.Log("임시 플레이어가 삭제됨!");
-                }
+                Die();
             }
             if (other.tag == "Enemy")
             {
                 hp -= enemy.damage;
+                Debug.Log(hp);
 
-                if (hp < 1f)
-                {
-                    Destroy(gameObject);
-                    Debug.Log("임시 플레이어가 삭제됨!");
-                }
+                Die();
+                InvincibilityTime();
             }
+        }
+
+        void Die()
+        {
+            if (hp < 1f)
+            {
+                Destroy(gameObject);
+                Debug.Log("임시 플레이어가 삭제됨!");
+            }
+        }
+
+        IEnumerator InvincibilityTime()
+        {
+            yield return new WaitForSeconds(2f);
         }
     }
 }

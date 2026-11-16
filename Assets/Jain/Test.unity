@@ -2772,8 +2772,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6864467657408800119, guid: afc8a1f664352f64c80595ba316ef3f7, type: 3}
+      propertyPath: attack
+      value: 
+      objectReference: {fileID: 8023064283834555919, guid: ff79ed6c91764c04eb557fa0dd2496e9, type: 3}
+    - target: {fileID: 6864467657408800119, guid: afc8a1f664352f64c80595ba316ef3f7, type: 3}
       propertyPath: position
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6864467657408800119, guid: afc8a1f664352f64c80595ba316ef3f7, type: 3}
+      propertyPath: dashSpeed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

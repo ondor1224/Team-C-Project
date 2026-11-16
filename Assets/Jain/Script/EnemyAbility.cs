@@ -21,6 +21,8 @@ namespace Jain
         Vector3 startingPoint;
 
         public GameObject bullet;
+        public GameObject attack;
+
         Rigidbody rb;
         Enemy enemy;
 
@@ -29,6 +31,21 @@ namespace Jain
             position = Random.Range(1, 4);
             rb = GetComponent<Rigidbody>();
             enemy = GetComponent<Enemy>();
+            if (position == 1)
+            {
+                enemy.damage = 0.6f;  //x2
+                enemy.speed = 1.2f;
+            }
+            else if (position == 2)
+            {
+                enemy.damage = 1.5f;  //x2
+                enemy.speed = 1.2f;
+            }
+            else if (position == 3)
+            {
+                enemy.damage = 2.25f;  //x2
+                enemy.speed = 0.5f;
+            }
         }
 
         void Update()
@@ -36,13 +53,16 @@ namespace Jain
             DeltaMin();
             if (enemy.radiusCheck)
             {
-                Onedeal();
-                MeleeAttack();
-                if (position == 3)
+                Throw();
+                Hit();
+                if (attackDelta <= 0f)
                 {
-                    if (!isDashing)
+                    if (position == 3)
                     {
-                        StartCoroutine(Dash());
+                        if (!isDashing)
+                        {
+                            StartCoroutine(Dash());
+                        }
                     }
                 }
             }
@@ -57,7 +77,7 @@ namespace Jain
         }
 
         //원거리
-        void Onedeal()
+        void Throw()
         {
             if (position == 1)
             {
@@ -70,14 +90,14 @@ namespace Jain
         }
 
         //근거리
-        void MeleeAttack()
+        void Hit()
         {
             if (position == 2)
             {
                 if (attackDelta <= 0f)
                 {
-                    //
-                    attackDelta = 0.3f;
+                    Instantiate(attack, transform.position + new Vector3(1f, 0.5f, 0f), transform.rotation);
+                    attackDelta = 0.7f;
                 }
             }
         }
@@ -85,10 +105,11 @@ namespace Jain
         //돌격형
         private IEnumerator Dash()
         {
+            attackDelta = 2f;
             isDashing = true;
             startingPoint = transform.position;
             rb.linearVelocity = Vector3.right * dashSpeed;
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.5f);
             rb.linearVelocity = Vector3.zero;
             startingPoint.x += -1f;
             transform.position = startingPoint;
