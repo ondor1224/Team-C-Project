@@ -5,7 +5,7 @@ namespace Jain
     public class Enemy : MonoBehaviour
     {
         //적의 기본 데미지
-        public float damage; //데미지는 원값에 2배
+        public float damage;
 
         //적의 이동속도를 조절함
         public float speed;
@@ -41,18 +41,10 @@ namespace Jain
                 Destroy(gameObject);
             }
             //플레이어의 범위 안에 들어온 적들의 움직임을 정지함
-            if  (other.name == "Radius")
+            if  (other.name == "PlayerRadius")
             {
                 Debug.Log("플레이어의 범위 안에 들어왔음");
                 radiusCheck = true;
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.name != "Radius" && radiusCheck)
-            {
-                radiusCheck = false;
             }
         }
     }

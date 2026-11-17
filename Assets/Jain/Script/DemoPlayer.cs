@@ -9,6 +9,10 @@ namespace Jain
     {
         public float hp;
 
+        public GameObject playerRadius;
+
+        float time;
+
         void Start()
         {
             
@@ -31,28 +35,31 @@ namespace Jain
 
                 Die();
             }
-            if (other.tag == "Enemy")
+            if (enemyAbility.position == 3 && other.tag == "Enemy")
             {
                 hp -= enemy.damage;
                 Debug.Log(hp);
 
                 Die();
-                InvincibilityTime();
             }
         }
 
         void Die()
         {
-            if (hp < 1f)
-            {
-                Destroy(gameObject);
-                Debug.Log("임시 플레이어가 삭제됨!");
-            }
-        }
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        IEnumerator InvincibilityTime()
-        {
-            yield return new WaitForSeconds(2f);
+            foreach (GameObject obj in enemies)
+            {
+                Enemy enemy = obj.GetComponent<Enemy>();
+
+                if (hp < 1f)
+                {
+                    Destroy(gameObject);
+                    Destroy(playerRadius);
+                    enemy.radiusCheck = false;
+                    Debug.Log("임시 플레이어가 삭제됨!");
+                }
+            }
         }
     }
 }

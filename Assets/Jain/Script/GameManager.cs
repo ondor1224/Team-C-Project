@@ -23,6 +23,8 @@ namespace Jain
         //보스가 현재 소환되어있는지 체크
         public int bossCheck;
 
+        float time;
+
         //오브젝트
         public GameObject enemyTower;
         public GameObject[] enemy;
@@ -31,18 +33,24 @@ namespace Jain
         //모든 몹을 리스트화
         public List<GameObject> enemyList = new List<GameObject>();
 
-        void Start()
-        {
-            StartCoroutine(EnemySpawn());
-        }
-
         void Update()
         {
+            time += Time.deltaTime;
+            if (time > delayTime)
+            {
+                StartCoroutine(EnemySpawn());
+                time = 0f;
+            }
             //보스 스테이지를 제외한 스테이지에 머무른 시간을 체크하고 지정된 시간에 다다르면 스테이지 넘어가기
             if (bossCheck != 1)
             {
                 if (stageTime >= 30f)
                 {
+                    foreach (GameObject obj in enemyList)
+                    {
+                        Destroy(obj);
+                    }
+                    enemyList.Clear();
                     stageTime = 0f;
                     stage += 1;
                 }
@@ -56,25 +64,22 @@ namespace Jain
         IEnumerator EnemySpawn()
         {
             yield return new WaitForSeconds(delayTime);
-            while (true)
             {
                 //보스 스테이지를 제외한 모든 스테이지에서 몹의 갯수가 정해진 갯수보다 작을때 실행
-                if (enemyList.Count <= enemyCount && stage % 3 != 0)
+                if (enemyList.Count < enemyCount && stage % 3 != 0)
                 {
-                    for (int i = 0; i < enemyCount; i++)
-                    {
-                        GameObject enemyMob = enemy[Random.Range(0, enemy.Length)];
-                        enemyList.Add(Instantiate(enemyMob, enemyTower.transform.position + new Vector3(2.6f, 0f, 0f), enemyTower.transform.rotation));
-                        yield return new WaitForSeconds(delayTime);
-                    }
+                    GameObject enemyMob = enemy[Random.Range(0, enemy.Length)];
+                    enemyList.Add(Instantiate(enemyMob, enemyTower.transform.position + new Vector3(2.6f, 0f, 0f), enemyTower.transform.rotation));
+                    yield return new WaitForSeconds(delayTime);
                 }
                 //보스 스테이지에서 보스가 한번도 소환되지 않았으면 실행
                 else if (stage % 3 == 0 && bossCheck == 0)
                 {
-                    GameObject bossMob = boss[Random.Range(0, boss.Length)];
+                    bossCheck = 1;
+                    int i = stage / 3;
+                    GameObject bossMob = boss[i - 1];
                     Instantiate(bossMob, enemyTower.transform.position + new Vector3(2.6f, 0f, 0f), enemyTower.transform.rotation);
                     yield return new WaitForSeconds(delayTime);
-                    bossCheck = 1;
                 }
                 //모든 조건을 충족하지 않을때 실행
                 else

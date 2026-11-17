@@ -33,17 +33,17 @@ namespace Jain
             enemy = GetComponent<Enemy>();
             if (position == 1)
             {
-                enemy.damage = 0.6f;  //x2
+                enemy.damage = 1.2f;
                 enemy.speed = 1.2f;
             }
             else if (position == 2)
             {
-                enemy.damage = 1.5f;  //x2
+                enemy.damage = 3f;
                 enemy.speed = 1.2f;
             }
             else if (position == 3)
             {
-                enemy.damage = 2.25f;  //x2
+                enemy.damage = 3.8f;
                 enemy.speed = 0.5f;
             }
         }
@@ -53,10 +53,10 @@ namespace Jain
             DeltaMin();
             if (enemy.radiusCheck)
             {
-                Throw();
-                Hit();
                 if (attackDelta <= 0f)
                 {
+                    Throw();
+                    Hit();
                     if (position == 3)
                     {
                         if (!isDashing)
@@ -84,7 +84,7 @@ namespace Jain
                 if (attackDelta <= 0f)
                 {
                     Instantiate(bullet, transform.position + new Vector3(0f, 0.5f, 0f), transform.rotation);
-                    attackDelta = 0.8f;
+                    attackDelta = 0.75f;
                 }
             }
         }
@@ -97,7 +97,7 @@ namespace Jain
                 if (attackDelta <= 0f)
                 {
                     Instantiate(attack, transform.position + new Vector3(1f, 0.5f, 0f), transform.rotation);
-                    attackDelta = 0.7f;
+                    attackDelta = 1.2f;
                 }
             }
         }
@@ -105,7 +105,7 @@ namespace Jain
         //µ¹°ÝÇü
         private IEnumerator Dash()
         {
-            attackDelta = 2f;
+            attackDelta = 3f;
             isDashing = true;
             startingPoint = transform.position;
             rb.linearVelocity = Vector3.right * dashSpeed;
