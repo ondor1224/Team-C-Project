@@ -23,28 +23,43 @@ namespace Jain
         public GameObject bullet;
         public GameObject attack;
 
+        ///ÄÄÆ÷³ÍÆ®
         Rigidbody rb;
         Enemy enemy;
+        GameManager gameManager;
+
+        public int haddon;
 
         void Start()
         {
-            position = Random.Range(1, 4);
-            rb = GetComponent<Rigidbody>();
             enemy = GetComponent<Enemy>();
-            if (position == 1)
+            rb = GetComponent<Rigidbody>();
+            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            position = Random.Range(1, 4);
+            haddon =  gameManager.stage > 6 ? Random.Range(0, 100) : 100;
+            if (!(haddon <= 10))
             {
-                enemy.damage = 1.2f;
-                enemy.speed = 1.2f;
+                if (position == 1)
+                {
+                    enemy.damage = 1.2f;
+                    enemy.speed = 1.2f;
+                }
+                else if (position == 2)
+                {
+                    enemy.damage = 3f;
+                    enemy.speed = 1.2f;
+                }
+                else if (position == 3)
+                {
+                    enemy.damage = 3.8f;
+                    enemy.speed = 0.5f;
+                }
             }
-            else if (position == 2)
+            else
             {
-                enemy.damage = 3f;
-                enemy.speed = 1.2f;
-            }
-            else if (position == 3)
-            {
-                enemy.damage = 3.8f;
-                enemy.speed = 0.5f;
+                position = 4;
+                enemy.damage = 6.5f;
+                enemy.speed = 2.3f;
             }
         }
 

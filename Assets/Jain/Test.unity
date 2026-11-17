@@ -2762,7 +2762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   delayTime: 1.5
   enemyCount: 10
-  stage: 3
+  stage: 7
   stageTime: 0
   bossCheck: 0
   enemyTower: {fileID: 140213615}
