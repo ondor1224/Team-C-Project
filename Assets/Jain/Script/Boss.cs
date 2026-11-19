@@ -4,9 +4,19 @@ namespace Jain
 {
     public class Boss : MonoBehaviour
     {
+        public int position;
+
+        Enemy enemy;
+
         void Start()
         {
-            
+            enemy = GetComponent<Enemy>();
+
+            if (position == 1)
+            {
+                enemy.damage = 10f;
+                enemy.speed = 0.4f;
+            }
         }
 
         void Update()

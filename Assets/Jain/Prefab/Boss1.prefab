@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6544870506250785628}
   m_Layer: 0
   m_Name: Boss1
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caf99a0e214e42148876e330899fee9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Jain::Jain.Boss
+  position: 0
 --- !u!114 &2834790057134263113
 MonoBehaviour:
   m_ObjectHideFlags: 0

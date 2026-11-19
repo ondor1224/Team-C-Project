@@ -23,9 +23,13 @@ namespace Jain
         //보스가 현재 소환되어있는지 체크
         public int bossCheck;
 
+        //플레이어가 가진 돈
+        public int money;
+
         float time;
 
         //오브젝트
+        public GameObject shop;
         public GameObject enemyTower;
         public GameObject[] enemy;
         public GameObject[] boss;
@@ -53,6 +57,18 @@ namespace Jain
                     enemyList.Clear();
                     stageTime = 0f;
                     stage += 1;
+                    if (stage % 3 == 0)
+                    {
+                        Boss boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
+                        boss.position = stage / 3;
+                        money += 100;
+                        shop.SetActive(true);
+                        Time.timeScale = 0f;
+                    }
+                    else
+                    {
+                        money += 10;
+                    }
                 }
                 else
                 {
