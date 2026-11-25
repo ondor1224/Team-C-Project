@@ -13,9 +13,14 @@ namespace Jain
         //플레이어 범위에 들어왔나?
         public bool radiusCheck;
 
+        //컴포넌트
+        Animator anim;
+        EnemyAbility enemyAbility;
+
         void Start()
         {
-
+            anim = GetComponent<Animator>();
+            enemyAbility = GetComponent<EnemyAbility>();
         }
 
         void Update()
@@ -29,7 +34,17 @@ namespace Jain
         void Move()
         {
             //적을 이동시킴
-            transform.position += new Vector3(1f, 0f, 0f) * speed * Time.deltaTime;
+            Vector3 moveVec = new Vector3(1f, 0f, 0f) * speed * Time.deltaTime;
+            transform.position += moveVec;
+            if (enemyAbility.position == 3)
+            {
+                anim.SetBool("Walk", moveVec != Vector3.zero);
+            }
+            else
+            {
+                anim.SetBool("Run", moveVec != Vector3.zero);
+            }
+            
         }
 
         private void OnTriggerEnter(Collider other)
@@ -44,7 +59,9 @@ namespace Jain
             if  (other.name == "PlayerRadius")
             {
                 Debug.Log("플레이어의 범위 안에 들어왔음");
+                CancelInvoke("Move");
                 radiusCheck = true;
+                anim.SetBool("Run", false);
             }
         }
     }

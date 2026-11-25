@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4605094170939226585}
   m_Layer: 0
   m_Name: Attack
-  m_TagString: EnemyAttack
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44af795627a9c049983ad5d7f6c4700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Jain::Jain.Attack
+  damage: 0
 --- !u!33 &7155303573074755779
 MeshFilter:
   m_ObjectHideFlags: 0

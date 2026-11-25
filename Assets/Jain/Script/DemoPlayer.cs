@@ -25,18 +25,25 @@ namespace Jain
 
         private void OnTriggerEnter(Collider other)
         {
-            Enemy enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>();
-            EnemyAbility enemyAbility = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAbility>();
-
-            if (other.tag == "EnemyAttack")
+            if (other.tag == "Bullet")
             {
+                Bullet bullet = other.GetComponent<Bullet>();
                 Destroy(other.gameObject);
-                hp -= enemy.damage;
+                hp -= bullet.damage;
 
                 Die();
             }
-            if (enemyAbility.position == 3 && other.tag == "Enemy")
+            if (other.tag == "Attack")
             {
+                Attack attack = other.GetComponent<Attack>();
+                Destroy(other.gameObject);
+                hp -= attack.damage;
+
+                Die();
+            }
+            if (other.tag == "Enemy")
+            {
+                Enemy enemy = other.GetComponent<Enemy>();
                 hp -= enemy.damage;
                 Debug.Log(hp);
 

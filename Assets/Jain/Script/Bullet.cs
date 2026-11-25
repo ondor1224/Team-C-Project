@@ -6,6 +6,8 @@ namespace Jain
     {
         public float speed;
 
+        public float damage;
+
         void Start()
         {
             Destroy(gameObject, 2f);

@@ -1,3 +1,4 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace Jain
@@ -11,7 +12,8 @@ namespace Jain
         void Start()
         {
             enemy = GetComponent<Enemy>();
-
+            GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            position = gameManager.stage / 3;
             if (position == 1)
             {
                 enemy.damage = 10f;

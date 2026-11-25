@@ -59,15 +59,20 @@ namespace Jain
                     stage += 1;
                     if (stage % 3 == 0)
                     {
-                        Boss boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
-                        boss.position = stage / 3;
-                        money += 100;
+                        money += 10;
                         shop.SetActive(true);
                         Time.timeScale = 0f;
                     }
                     else
                     {
-                        money += 10;
+                        if (stage % 3 == 1)
+                        {
+                            money += 100;
+                        }
+                        else
+                        {
+                            money += 10;
+                        }
                     }
                 }
                 else
@@ -85,7 +90,7 @@ namespace Jain
                 if (enemyList.Count < enemyCount && stage % 3 != 0)
                 {
                     GameObject enemyMob = enemy[Random.Range(0, enemy.Length)];
-                    enemyList.Add(Instantiate(enemyMob, enemyTower.transform.position + new Vector3(2.6f, 0f, 0f), enemyTower.transform.rotation));
+                    enemyList.Add(Instantiate(enemyMob, enemyTower.transform.position + new Vector3(2.6f, 0f, 0f), enemyMob.transform.rotation));
                     yield return new WaitForSeconds(delayTime);
                 }
                 //보스 스테이지에서 보스가 한번도 소환되지 않았으면 실행
@@ -94,7 +99,7 @@ namespace Jain
                     bossCheck = 1;
                     int i = stage / 3;
                     GameObject bossMob = boss[i - 1];
-                    Instantiate(bossMob, enemyTower.transform.position + new Vector3(2.6f, 0f, 0f), enemyTower.transform.rotation);
+                    Instantiate(bossMob, enemyTower.transform.position + new Vector3(2.6f, 0f, 0f), bossMob.transform.rotation);
                     yield return new WaitForSeconds(delayTime);
                 }
                 //모든 조건을 충족하지 않을때 실행

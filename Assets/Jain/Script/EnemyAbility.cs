@@ -27,11 +27,13 @@ namespace Jain
         Rigidbody rb;
         Enemy enemy;
         GameManager gameManager;
+        Animator anim;
 
         public int haddon;
 
         void Start()
         {
+            anim = GetComponent<Animator>();
             enemy = GetComponent<Enemy>();
             rb = GetComponent<Rigidbody>();
             gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -98,7 +100,10 @@ namespace Jain
             {
                 if (attackDelta <= 0f)
                 {
-                    Instantiate(bullet, transform.position + new Vector3(0f, 0.5f, 0f), transform.rotation);
+                    GameObject bulletMob = Instantiate(bullet, transform.position + new Vector3(0f, 0.5f, 0f), transform.rotation);
+                    Bullet bulletScript = bulletMob.GetComponent<Bullet>();
+                    bulletScript.damage = enemy.damage;
+                    anim.SetTrigger("Attack");
                     attackDelta = 0.75f;
                 }
             }
@@ -111,7 +116,10 @@ namespace Jain
             {
                 if (attackDelta <= 0f)
                 {
-                    Instantiate(attack, transform.position + new Vector3(1f, 0.5f, 0f), transform.rotation);
+                    GameObject attackMob = Instantiate(attack, transform.position + new Vector3(1f, 0.5f, 0f), attack.transform.rotation);
+                    Attack attackScript = attackMob.GetComponent<Attack>();
+                    attackScript.damage = enemy.damage;
+                    anim.SetTrigger("Attack");
                     attackDelta = 1.2f;
                 }
             }
@@ -120,6 +128,7 @@ namespace Jain
         //µ¹°ÝÇü
         private IEnumerator Dash()
         {
+            anim.SetTrigger("Dash");
             attackDelta = 3f;
             isDashing = true;
             startingPoint = transform.position;
