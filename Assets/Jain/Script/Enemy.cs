@@ -36,13 +36,20 @@ namespace Jain
             //적을 이동시킴
             Vector3 moveVec = new Vector3(1f, 0f, 0f) * speed * Time.deltaTime;
             transform.position += moveVec;
-            if (enemyAbility.position == 3)
+            if (enemyAbility == null)
             {
                 anim.SetBool("Walk", moveVec != Vector3.zero);
             }
             else
             {
-                anim.SetBool("Run", moveVec != Vector3.zero);
+                if (enemyAbility.position == 3)
+                {
+                    anim.SetBool("Walk", moveVec != Vector3.zero);
+                }
+                else
+                {
+                    anim.SetBool("Run", moveVec != Vector3.zero);
+                }
             }
             
         }

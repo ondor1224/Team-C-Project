@@ -2613,6 +2613,7 @@ GameObject:
   - component: {fileID: 1221739525}
   - component: {fileID: 1221739524}
   - component: {fileID: 1221739526}
+  - component: {fileID: 1221739527}
   m_Layer: 0
   m_Name: Dice
   m_TagString: Untagged
@@ -2705,6 +2706,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!95 &1221739527
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221739522}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1358142963
 GameObject:
   m_ObjectHideFlags: 0
@@ -3179,6 +3202,59 @@ MonoBehaviour:
   - {fileID: 1718243177629022603, guid: 3cc05621ef6f1e74088e02053aa4d380, type: 3}
   - {fileID: 5988728812933657369, guid: b253a7005f22ffc40964a4ffef176542, type: 3}
   enemyList: []
+--- !u!1 &1589261209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1589261211}
+  - component: {fileID: 1589261210}
+  m_Layer: 0
+  m_Name: TImeLine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!320 &1589261210
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589261209}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 06380be7f4f1f764d97400c0f59a19e9, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 362097837082523520, guid: 06380be7f4f1f764d97400c0f59a19e9, type: 2}
+    value: {fileID: 1221739522}
+  - key: {fileID: 3827510561176236272, guid: 06380be7f4f1f764d97400c0f59a19e9, type: 2}
+    value: {fileID: 1221739527}
+  m_ExposedReferences:
+    m_References: []
+--- !u!4 &1589261211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589261209}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.07392, y: 5.58417, z: 6.98}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1617719855
 GameObject:
   m_ObjectHideFlags: 0
@@ -4362,3 +4438,4 @@ SceneRoots:
   - {fileID: 1386531125}
   - {fileID: 459086378}
   - {fileID: 182629481}
+  - {fileID: 1589261211}
