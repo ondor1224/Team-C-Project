@@ -33,6 +33,9 @@ namespace Jain
         public GameObject enemyTower;
         public GameObject[] enemy;
         public GameObject[] boss;
+        public GameObject bossTimeLine;
+        public GameObject mainCamera;
+        public GameObject bossName;
 
         //모든 몹을 리스트화
         public List<GameObject> enemyList = new List<GameObject>();
@@ -99,8 +102,18 @@ namespace Jain
                     bossCheck = 1;
                     int i = stage / 3;
                     GameObject bossMob = boss[i - 1];
+                    Enemy bossEnemy = bossMob.GetComponent<Enemy>();
+                    bossTimeLine.SetActive(true);
                     Instantiate(bossMob, enemyTower.transform.position + new Vector3(2.6f, 0f, 0f), bossMob.transform.rotation);
+                    bossEnemy.BossCancell();
                     yield return new WaitForSeconds(delayTime);
+                    yield return new WaitForSeconds(0.7f);
+                    bossName.SetActive(true);
+                    yield return new WaitForSeconds(2.8f); //3.5f
+                    bossTimeLine.SetActive(false);
+                    bossName.SetActive(false);
+                    mainCamera.transform.position = new Vector3(0f, 13.37f, 8.35f);
+                    mainCamera.transform.rotation = Quaternion.Euler(new Vector3(50f, 180f, 0f));
                 }
                 //모든 조건을 충족하지 않을때 실행
                 else

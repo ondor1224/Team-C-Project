@@ -29,7 +29,7 @@ namespace Jain
         GameManager gameManager;
         Animator anim;
 
-        public int haddon;
+        public int hidden;
 
         void Start()
         {
@@ -38,8 +38,8 @@ namespace Jain
             rb = GetComponent<Rigidbody>();
             gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
             position = Random.Range(1, 4);
-            haddon =  gameManager.stage > 6 ? Random.Range(0, 100) : 100;
-            if (!(haddon <= 10))
+            hidden =  gameManager.stage > 6 ? Random.Range(0, 100) : 100;
+            if (!(hidden <= 10))
             {
                 if (position == 1)
                 {
@@ -139,6 +139,11 @@ namespace Jain
             transform.position = startingPoint;
             enemy.radiusCheck = false;
             isDashing = false;
+        }
+
+        void HiddenAtk()
+        {
+
         }
     }
 }

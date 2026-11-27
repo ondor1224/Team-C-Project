@@ -71,5 +71,11 @@ namespace Jain
                 anim.SetBool("Run", false);
             }
         }
+
+        public void BossCancell()
+        {
+            CancelInvoke("Move");
+            Invoke("Move", 2.5f);
+        }
     }
 }
